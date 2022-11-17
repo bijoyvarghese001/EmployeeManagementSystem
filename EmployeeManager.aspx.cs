@@ -121,8 +121,17 @@ namespace Comp600ContactManager
             displayEmployee(emp1);
         }
 
-       
-    // method to make changes in the existing salary/hourly employee details and save
+        // method to display the next employee details
+        protected void timeSheetButton_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("timeSheetButton_Click");
+            System.Diagnostics.Debug.WriteLine("timeSheetButton_Click");
+            Response.Redirect("TimeSheet.aspx");
+
+        }
+
+
+        // method to make changes in the existing salary/hourly employee details and save
         protected void saveButton_Click1(object sender, EventArgs e)
         {
             Employee current = empUtil.getCurrent();

@@ -74,8 +74,10 @@
         </p>
 
          <p style="height: 50px">
-            Time Sheet
+            <asp:Button ID="timeSheetButton" runat="server" Text="TimeSheet" OnClick="timeSheetButton_Click" style="margin-left: 70px" Width="180px" />
+
           </p>
+
         
     </form>
 </body>
