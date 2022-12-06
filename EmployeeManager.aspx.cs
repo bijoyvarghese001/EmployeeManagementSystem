@@ -126,7 +126,8 @@ namespace Comp600ContactManager
         {
             Console.WriteLine("timeSheetButton_Click");
             System.Diagnostics.Debug.WriteLine("timeSheetButton_Click");
-            Response.Redirect("TimeSheet.aspx");
+            System.Diagnostics.Debug.WriteLine("week" + empId.Text);
+            Response.Redirect("TimeSheet.aspx?empId="+empId.Text);
 
         }
 

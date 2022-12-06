@@ -34,7 +34,7 @@ namespace Comp600ContactManager
             {
                 System.Diagnostics.Debug.WriteLine(" DAO 3 ");
                 SqlConnection conn = getConnection();
-                SqlCommand sqlcmd = new SqlCommand("Select * from Employee e INNER JOIN SalaryEmployee s ON e.EmpId = s.EmpId", conn);
+                SqlCommand sqlcmd = new SqlCommand("Select * from Employee e INNER JOIN SalaryEmployee s ON e.employeeId = s.employeeId", conn);
                 using (SqlDataReader r = sqlcmd.ExecuteReader())
                 {
                     System.Diagnostics.Debug.WriteLine(" Inside ExecuteReader 1 ");
@@ -105,6 +105,37 @@ namespace Comp600ContactManager
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+          public ArrayList getWeekRangeDataDAO(int empNo, String startDate , String endDate)
+           {
+            ArrayList payrollData = new ArrayList();
+            try
+               {
+                
+                   System.Diagnostics.Debug.WriteLine(" DAO current week ");
+                   SqlConnection conn = getConnection();
+                   SqlCommand sqlcmd = new SqlCommand("Select * from TimeSheet t WHERE t.EmpId = "+ empNo +" AND t.StartDate = '" + startDate +"' AND t.EndDate = '"+ endDate +"'", conn);
+                   using (SqlDataReader r = sqlcmd.ExecuteReader())
+                   {
+                    while (r.Read())
+                    {
+                        System.Diagnostics.Debug.WriteLine("result " + r);
+                        Timesheet timesheet = new Timesheet((int)r["EmpId"], (DateTime)r["StartDate"], (DateTime)r["EndDate"],
+                                               float.Parse(r["Mon"].ToString()), float.Parse(r["Tue"].ToString()), float.Parse(r["Wed"].ToString()),
+                                               float.Parse(r["Thu"].ToString()), float.Parse(r["Fri"].ToString()), float.Parse(r["Sat"].ToString()),
+                                               float.Parse(r["Sun"].ToString()));
+                        payrollData.Add(timesheet);
+                    }
+                   }
+                   conn.Close();
+                   System.Diagnostics.Debug.WriteLine(" Timesheet data ");
+               }
+               catch (Exception ex)
+               {
+                   MessageBox.Show(ex.ToString());
+               }
+            return payrollData;
         }
     }
 }

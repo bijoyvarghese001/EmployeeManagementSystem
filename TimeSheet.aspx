@@ -3,84 +3,92 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head rinat="server">
     <meta charset="utf-8" />
     <title>Payroll Data Form</title>
 </head>
 <body>
-    <form>
+    <form id="form2" runat="server">
+       
+        
         <tr>
             <td>
-                <table>
-                    <tr>
-                        <td>
-                            <select name="payroll" id="payroll">
-                              <option value="default">Choose One Option</option>
-                              <option value="prev">Previous Week</option>
-                              <option value="curr">Current Week</option>
-                              <option value="next">Next Week</option>
-                        </td>
-                        <td style="float:left;">&nbsp;&nbsp;<input type="submit" value="submit"></td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Back"></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-        <tr>
-            <td>&nbsp;</td>
-        </tr>
-        <td>
-            <table>
-                <tr>
-                    <td>EmpID</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Starting and ending week dates</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <!--<input type="text" value=""></td>-->
-                   <input type="date" id="start" name="trip-start" value="2022-11-16" min="1900-01-01" max="2099-12-31">
-                    </br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="date" id="start" name="trip-start" value="2022-11-16" min="1900-01-01" max="2099-12-31">
-                </tr>
-                <tr>
-                    <td>Monday</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Tuesday</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Wednesday</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Thursday</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Friday</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Saturday</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Sunday</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>Total weekly hours</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td align="center">
-                        <table>
-                            <tr>
-                                <td align="center"><input type="submit" value="Submit"></td>
-                                <td align="center"><input type="submit" value="Update"></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-
-            <table>
-        </td>
-        </tr>
-    </form>
+                <div style="width: 696px; margin-left: 80px">
+                    <asp:DropDownList ID="DropDownList1" runat="server">
+                        <asp:ListItem Value="Current">Current Week</asp:ListItem>
+                        <asp:ListItem Value="Previous">Previous Week</asp:ListItem>
+                        <asp:ListItem Value="Next">Next Week</asp:ListItem>
+                    </asp:DropDownList>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="selectWeek" runat="server" Text="Submit" OnClick="selectWeekClick" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="backbtn" runat="server" Text="Back" />
+                    <br />
+                    <br />
+                    <br />
+                    <asp:Label ID="empLabel" runat="server" Text="Emp Id" ></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="empTextBox" runat="server" disabled></asp:TextBox>
+                    <br />
+                    <br />
+                    <br />
+                    <asp:Label ID="startWeeklabel" runat="server" Text="Starting Week Date" ></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="strtWeekTextBox" runat="server" disabled></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br />
+                    <br />
+                    <asp:Label ID="endWeekLabel" runat="server" Text="Ending Week Date" ></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="EndWeekTextBox" runat="server" disabled></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="monday" runat="server" Text="Monday"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="monTextBox" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br />
+                    <br />
+                    <asp:Label ID="tuesday" runat="server" Text="Tuesday"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="tueTextBox" runat="server"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="wedLabel" runat="server" Text="Wednesday"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="wedTextBox" runat="server"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="thuLabel" runat="server" Text="Thursday"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="thuTextBox" runat="server"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="friLabel" runat="server" Text="Friday"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="friTextBox" runat="server"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="satLabel" runat="server" Text="Saturday"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="satTextBox" runat="server"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="sunLabel" runat="server" Text="Sunday"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="sunTextBox" runat="server"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="totalLabel" runat="server" Text="Total Weekly Hours"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="totHrsTextBox" runat="server"></asp:TextBox>
+                    <br />
+                    <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="submitTimesheet" runat="server" Text="Submit" />
+&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="updateTimesheet" runat="server" Text="Update" />
+        </div>
+                </form>
 </body>
 </html>
