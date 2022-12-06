@@ -127,7 +127,16 @@ namespace Comp600ContactManager
             Console.WriteLine("timeSheetButton_Click");
             System.Diagnostics.Debug.WriteLine("timeSheetButton_Click");
             System.Diagnostics.Debug.WriteLine("week" + empId.Text);
-            Response.Redirect("TimeSheet.aspx?empId="+empId.Text);
+            Employee emp = empUtil.getCurrent();
+            if(emp is HourlyEmployee)
+            {
+                Response.Redirect("TimeSheet.aspx?empId=" + empId.Text);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("TimeSheet Data not available for Salary Employees", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+           
 
         }
 
