@@ -34,7 +34,7 @@ namespace Comp600ContactManager
             {
                 System.Diagnostics.Debug.WriteLine(" DAO 3 ");
                 SqlConnection conn = getConnection();
-                SqlCommand sqlcmd = new SqlCommand("Select * from Employee e INNER JOIN SalaryEmployee s ON e.employeeId = s.employeeId", conn);
+                SqlCommand sqlcmd = new SqlCommand("Select * from Employee e INNER JOIN SalaryEmployee s ON e.EmpId = s.EmpId", conn);
                 using (SqlDataReader r = sqlcmd.ExecuteReader())
                 {
                     System.Diagnostics.Debug.WriteLine(" Inside ExecuteReader 1 ");
