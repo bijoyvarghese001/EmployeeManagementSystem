@@ -4,52 +4,69 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title> </title>
+   <style>
+        body {background-color: powderblue;}
+        h1 , p  {color: black;}
+        .texbMargin {margin: 0px 10px;}
+        .formdiv {
+            border: 3px solid white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 37px;
+        }
+        .title{ text-align: center;}
+</style>
 </head>
 <body>
+    <div class="title">
+        <h1>
+        Contact Manager Application
+            </h1>
+    </div>
     <form id="form1" runat="server">
-        <div>
-        </div>
+        <div class="formdiv">
+        
         <p style="height: 50px">
             Employee Id
-            <asp:TextBox ID="empId" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="empId" runat="server"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Street
-            <asp:TextBox ID="street" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="street" runat="server"></asp:TextBox>
         </p>
         <p style="height: 50px">
             First Name
-            <asp:TextBox ID="firstName" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="firstName" runat="server"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             City
-            <asp:TextBox ID="city" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="city" runat="server"></asp:TextBox>
 
         </p>
 
         <p style="height: 50px">
             Last Name
-            <asp:TextBox ID="lastName" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="lastName" runat="server"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Province
-            <asp:TextBox ID="province" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="province" runat="server"></asp:TextBox>
 
         </p>
 
         <p style="height: 50px">
             Middle Init
-            <asp:TextBox ID="middleInit" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="middleInit" runat="server"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Postal Code
-            <asp:TextBox ID="postalCode" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="postalCode" runat="server"></asp:TextBox>
 
         </p>
 
         <p style="height: 50px">
             Phone No
-            <asp:TextBox ID="phoneNo" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="phoneNo" runat="server"></asp:TextBox>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Job Title
-            <asp:TextBox ID="jobTitle" runat="server"></asp:TextBox>
+            <asp:TextBox class="texbMargin" ID="jobTitle" runat="server"></asp:TextBox>
 
         </p>
 
@@ -74,10 +91,10 @@
         </p>
 
          <p style="height: 50px">
-            <asp:Button ID="timeSheetButton" runat="server" Text="TimeSheet" OnClick="timeSheetButton_Click" style="margin-left: 70px" Width="180px" />
+            <asp:Button ID="timeSheetButton" runat="server" Text="TimeSheet" OnClick="timeSheetButton_Click" style= Width="180px" />
 
           </p>
-
+            </div>
         
     </form>
 </body>
