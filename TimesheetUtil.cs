@@ -12,7 +12,20 @@ namespace Comp600ContactManager
         private Timesheet[] timesheetData;
         EmployeeDAO empDAO = new EmployeeDAO();
 
-       
+        //Update the Timesheet in the DB
+        public void updateEmployeeTimesheet(Timesheet1 timesheet)
+        {
+            EmployeeDAO empDAO = new EmployeeDAO();
+            empDAO.updateTimesheetDB(timesheet);
+
+        }
+
+        public void insertEmployeeTimesheet(Timesheet1 timesheet)
+        {
+            EmployeeDAO empDAO = new EmployeeDAO();
+            empDAO.insertTimesheetDB(timesheet);
+
+        }
         public Timesheet[] getCurrentWeekDataFromDB(String empNo)
         {
             

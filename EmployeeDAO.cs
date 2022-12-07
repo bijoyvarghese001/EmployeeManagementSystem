@@ -69,6 +69,56 @@ namespace Comp600ContactManager
         }
 
 
+        public void updateTimesheetDB(Timesheet1 t)
+        {
+            SqlConnection conn = getConnection();
+
+            try
+            {
+
+                String cmdText = "Update TimeSheet set Mon =" + t.Monday + ", Tue = " + t.Tuesday
+                    + ", Wed = " + t.Wednesday + ", Thu =" + t.Thursday + ", Fri =" + t.Friday
+                    + ", Sat=" + t.Saturday + ", Sun=" + t.Sunday
+                    + " WHERE EmpId=" + t.EmpId + " AND StartDate='" + t.StartDate + "' AND EndDate='" + t.EndDate + "'";
+
+               
+
+                System.Diagnostics.Debug.WriteLine(" SQL Update Query =  "+ cmdText);
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public void insertTimesheetDB(Timesheet1 t)
+        {
+            SqlConnection conn = getConnection();
+
+            try
+            {
+
+                String cmdText = "Insert into TimeSheet set EmpId=" + t.EmpId + ", StartDate='" + t.StartDate + "', EndDate='" + t.EndDate + "' ,Mon =" + t.Monday + ", Tue = " + t.Tuesday
+                    + ", Wed = " + t.Wednesday + ", Thu =" + t.Thursday + ", Fri =" + t.Friday
+                    + ", Sat=" + t.Saturday + ", Sun=" + t.Sunday;
+                    
+                System.Diagnostics.Debug.WriteLine(" SQL Update Query =  " + cmdText);
+
+                SqlCommand cmd = new SqlCommand(cmdText, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         public void updateEmployeeDB(Employee e)
         {
             SqlConnection conn = getConnection();
@@ -82,6 +132,8 @@ namespace Comp600ContactManager
                     + "', Province='" + a.Province + "', PostalCode='" + a.PostalCode
                     + "', PhoneNumber='" + e.phoneNumber + "', JobDescription='" + e.jobDescription
                     + "' WHERE EmpId=" + e.employeeNo;
+
+                System.Diagnostics.Debug.WriteLine(" SQL Update Query =  " + cmdText);
 
                 SqlCommand cmd = new SqlCommand(cmdText, conn);
                 cmd.ExecuteNonQuery();

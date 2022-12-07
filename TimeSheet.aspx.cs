@@ -14,7 +14,7 @@ namespace Comp600ContactManager
         private static TimesheetUtil timesheetUtil; 
         protected void Page_Load(object sender, EventArgs e)
         {
-          //  if (!Page.IsPostBack)  {
+            if (!Page.IsPostBack)  {
                 timesheetUtil = new TimesheetUtil();
                 Timesheet[] data;
                 String empId = Request.QueryString["empId"];
@@ -25,7 +25,7 @@ namespace Comp600ContactManager
                     displayPayrollData(data);
                     System.Diagnostics.Debug.WriteLine(" data " + data);
                 }
-           // }
+            }
         }
 
         public void displayPayrollData(Timesheet[] ts)
@@ -53,7 +53,53 @@ namespace Comp600ContactManager
             return totalHrs;
 
         }
-        protected void selectWeekClick(object sender, EventArgs e)
+
+        protected void submitTimesheetClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(" submitTimesheetClick ");
+            Timesheet1 t = new Timesheet1(getIntFromString(empTextBox.Text.ToString()), strtWeekTextBox.Text.ToString(), EndWeekTextBox.Text.ToString(),
+                getFloatFromString(monTextBox.Text.ToString()), getFloatFromString(tueTextBox.Text.ToString()), getFloatFromString(wedTextBox.Text.ToString()),
+                getFloatFromString(thuTextBox.Text.ToString()), getFloatFromString(friTextBox.Text.ToString()), getFloatFromString(satTextBox.Text.ToString()),
+                getFloatFromString(sunTextBox.Text.ToString())
+                );
+
+            System.Diagnostics.Debug.WriteLine(" empTextBox.Text " + empTextBox.Text);
+            System.Diagnostics.Debug.WriteLine(" strtWeekTextBox.Text " + strtWeekTextBox.Text);
+            System.Diagnostics.Debug.WriteLine(" satTextBox.Text " + satTextBox.Text);
+            System.Diagnostics.Debug.WriteLine(" sunTextBox.Text " + sunTextBox.Text);
+
+            timesheetUtil.insertEmployeeTimesheet(t);
+        }
+        protected void updateTimesheetClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(" updateTimesheetClick ");
+            Timesheet1 t = new Timesheet1(getIntFromString(empTextBox.Text.ToString()), strtWeekTextBox.Text.ToString(), EndWeekTextBox.Text.ToString(),
+                getFloatFromString(monTextBox.Text.ToString()), getFloatFromString(tueTextBox.Text.ToString()), getFloatFromString(wedTextBox.Text.ToString()),
+                getFloatFromString(thuTextBox.Text.ToString()), getFloatFromString(friTextBox.Text.ToString()), getFloatFromString(satTextBox.Text.ToString()),
+                getFloatFromString(sunTextBox.Text.ToString())
+                );
+
+            System.Diagnostics.Debug.WriteLine(" empTextBox.Text " + empTextBox.Text);
+            System.Diagnostics.Debug.WriteLine(" strtWeekTextBox.Text " + strtWeekTextBox.Text);
+            System.Diagnostics.Debug.WriteLine(" satTextBox.Text " + satTextBox.Text);
+            System.Diagnostics.Debug.WriteLine(" sunTextBox.Text " + sunTextBox.Text);
+
+            timesheetUtil.updateEmployeeTimesheet(t);
+        }
+
+        private float getFloatFromString(String value)
+        {
+            return float.Parse(value, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        }
+
+        private int getIntFromString(String value)
+        {
+            return int.Parse(value, System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        }
+
+
+      
+    protected void selectWeekClick(object sender, EventArgs e)
         {
             String empId = Request.QueryString["empId"];
             Timesheet[] data;
