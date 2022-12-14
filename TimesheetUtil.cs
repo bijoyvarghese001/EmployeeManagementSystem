@@ -36,6 +36,9 @@ namespace Comp600ContactManager
             var thisWeekEnd = (thisWeekStart.AddDays(7).AddSeconds(-1)).ToString("yyyy-MM-dd");
             ArrayList data = empDAO.getWeekRangeDataDAO(Int32.Parse(empNo), WeekStart , thisWeekEnd);
 
+            if (data == null || data.Count == 0)
+                return null;
+
             timesheetData = new Timesheet[data.Count];
             for (int i = 0; i < data.Count; i++)
             {
@@ -53,6 +56,8 @@ namespace Comp600ContactManager
             var lastWeekEnd = thisWeekStart.AddSeconds(-1).ToString("yyyy-MM-dd");
 
             ArrayList data = empDAO.getWeekRangeDataDAO(Int32.Parse(empNo), lastWeekStart, lastWeekEnd);
+            if (data == null || data.Count == 0)
+                return null;
 
             timesheetData = new Timesheet[data.Count];
             for (int i = 0; i < data.Count; i++)
@@ -71,6 +76,8 @@ namespace Comp600ContactManager
             var nextWeekEnd = (nxtweek.AddDays(7).AddSeconds(-1)).ToString("yyyy-MM-dd");
 
             ArrayList data = empDAO.getWeekRangeDataDAO(Int32.Parse(empNo), nextWeekStart, nextWeekEnd);
+            if (data == null || data.Count == 0)
+                return null;
 
             timesheetData = new Timesheet[data.Count];
             for (int i = 0; i < data.Count; i++)
@@ -78,6 +85,43 @@ namespace Comp600ContactManager
                 timesheetData[i] = (Timesheet)data[i];
             }
             return timesheetData;
+        }
+
+        public String getWeekStartDate(String weekType)
+        {
+            DateTime baseDate = DateTime.Today;
+            var thisWeekStart = baseDate.AddDays(-(int)baseDate.DayOfWeek);
+            String CurrentWeekStart = thisWeekStart.ToString("yyyy-MM-dd");
+            var previousWeekStart = thisWeekStart.AddDays(-7).ToString("yyyy-MM-dd");
+            var nxtweek = thisWeekStart.AddDays(7);
+            var nextWeekStart = nxtweek.ToString("yyyy-MM-dd");
+            if(weekType == "previous")
+            {
+                return previousWeekStart;
+            } else if (weekType == "next")
+            {
+                return nextWeekStart;
+            } 
+            return CurrentWeekStart;
+        }
+
+        public String getWeekEndDate(String weekType)
+        {
+            DateTime baseDate = DateTime.Today;
+            var thisWeekStart = baseDate.AddDays(-(int)baseDate.DayOfWeek);
+            var currentWeekEnd = (thisWeekStart.AddDays(7).AddSeconds(-1)).ToString("yyyy-MM-dd");
+            var previousWeekEnd = thisWeekStart.AddSeconds(-1).ToString("yyyy-MM-dd");
+            var nxtweek = thisWeekStart.AddDays(7);
+            var nextWeekEnd = (nxtweek.AddDays(7).AddSeconds(-1)).ToString("yyyy-MM-dd");
+            if(weekType == "previous")
+            {
+                return previousWeekEnd;
+            }
+            else if (weekType == "next")
+            {
+                return nextWeekEnd;
+            }
+            return currentWeekEnd;
         }
 
 

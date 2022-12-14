@@ -11,30 +11,51 @@ namespace Comp600ContactManager
 {
     public partial class TimeSheet : System.Web.UI.Page
     {
-        private static TimesheetUtil timesheetUtil; 
+        private static TimesheetUtil timesheetUtil;
+        static string prevPage = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)  {
+                prevPage = Request.UrlReferrer.ToString();
                 timesheetUtil = new TimesheetUtil();
                 Timesheet[] data;
                 String empId = Request.QueryString["empId"];
                 if (empId != "")
                 {
-                    
+                    empTextBox.Text = empId;
+                    strtWeekTextBox.Text = timesheetUtil.getWeekStartDate("current");
+                    EndWeekTextBox.Text = timesheetUtil.getWeekEndDate("current");
                     data = timesheetUtil.getCurrentWeekDataFromDB(empId);
+                    if (data != null) { 
                     displayPayrollData(data);
-                    System.Diagnostics.Debug.WriteLine(" data " + data);
+                } else
+                    {
+                        clearTheTextBoxes();
+                    }
+                    //System.Diagnostics.Debug.WriteLine(" data " + data);
                 }
             }
+        }
+
+        public void clearTheTextBoxes()
+        {
+            monTextBox.Text = "";
+            tueTextBox.Text = "";
+            wedTextBox.Text = "";
+            thuTextBox.Text = "";
+            friTextBox.Text = "";
+            satTextBox.Text = "";
+            sunTextBox.Text = "";
+            totHrsTextBox.Text = "";
         }
 
         public void displayPayrollData(Timesheet[] ts)
         {
                for (int i = 0; i < ts.Length; i++)
              {
-                empTextBox.Text = ts[i].EmpId.ToString();
-                strtWeekTextBox.Text = ts[i].StartDate.ToShortDateString();
-                EndWeekTextBox.Text = ts[i].EndDate.ToShortDateString();
+                //empTextBox.Text = ts[i].EmpId.ToString();
+                //strtWeekTextBox.Text = ts[i].StartDate.ToShortDateString();
+                //EndWeekTextBox.Text = ts[i].EndDate.ToShortDateString();
                 monTextBox.Text = ts[i].Monday.ToString();
                 tueTextBox.Text = ts[i].Tuesday.ToString();
                 wedTextBox.Text = ts[i].Wednesday.ToString();
@@ -69,6 +90,12 @@ namespace Comp600ContactManager
             System.Diagnostics.Debug.WriteLine(" sunTextBox.Text " + sunTextBox.Text);
 
             timesheetUtil.insertEmployeeTimesheet(t);
+            MessageBox.Show("Employee Timesheet Details Added To Database", "", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        protected void backButtonClick(object sender, EventArgs e)
+        {
+            Response.Redirect(prevPage);
         }
         protected void updateTimesheetClick(object sender, EventArgs e)
         {
@@ -85,6 +112,7 @@ namespace Comp600ContactManager
             System.Diagnostics.Debug.WriteLine(" sunTextBox.Text " + sunTextBox.Text);
 
             timesheetUtil.updateEmployeeTimesheet(t);
+            MessageBox.Show("Employee Timesheet Details Updated To Database", "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private float getFloatFromString(String value)
@@ -106,17 +134,32 @@ namespace Comp600ContactManager
             System.Diagnostics.Debug.WriteLine(" dataselected " + DropDownList1.SelectedValue);
             if(DropDownList1.SelectedValue == "Previous")
             {
+                strtWeekTextBox.Text = timesheetUtil.getWeekStartDate("previous");
+                EndWeekTextBox.Text = timesheetUtil.getWeekEndDate("previous");
                 data = timesheetUtil.getPreviousWeekDataFromDB(empId);
+
             } else if (DropDownList1.SelectedValue == "Next")
             {
-                 data = timesheetUtil.getNextWeekDataFromDB(empId);
+                strtWeekTextBox.Text = timesheetUtil.getWeekStartDate("next");
+                EndWeekTextBox.Text = timesheetUtil.getWeekEndDate("next");
+                data = timesheetUtil.getNextWeekDataFromDB(empId);
             }
             else
             {
+                strtWeekTextBox.Text = timesheetUtil.getWeekStartDate("current");
+                EndWeekTextBox.Text = timesheetUtil.getWeekEndDate("current");
                 data = timesheetUtil.getCurrentWeekDataFromDB(empId);
-                
+
             }
-            displayPayrollData(data);
+            //displayPayrollData(data);
+            if (data != null)
+            {
+                displayPayrollData(data);
+            }
+            else
+            {
+                clearTheTextBoxes();
+            }
         }
 
     }

@@ -30,7 +30,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="selectWeek" runat="server" Text="Submit" OnClick="selectWeekClick" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="backbtn" runat="server" Text="Back" />
+                    <asp:Button ID="backbtn" runat="server" Text="Back" OnClick="backButtonClick" />
                     <br />
                     <br />
                     <br />

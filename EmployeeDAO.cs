@@ -98,13 +98,14 @@ namespace Comp600ContactManager
         public void insertTimesheetDB(Timesheet1 t)
         {
             SqlConnection conn = getConnection();
+           
 
             try
             {
 
-                String cmdText = "Insert into TimeSheet set EmpId=" + t.EmpId + ", StartDate='" + t.StartDate + "', EndDate='" + t.EndDate + "' ,Mon =" + t.Monday + ", Tue = " + t.Tuesday
-                    + ", Wed = " + t.Wednesday + ", Thu =" + t.Thursday + ", Fri =" + t.Friday
-                    + ", Sat=" + t.Saturday + ", Sun=" + t.Sunday;
+                String cmdText = "Insert into TimeSheet VALUES ('"  + t.StartDate + "','"+ t.EndDate+"',"+ t.EmpId+  "," + t.Monday + ", " + t.Tuesday
+                    + "," + t.Wednesday + "," + t.Thursday + "," + t.Friday
+                    + "," + t.Saturday + "," + t.Sunday+")";
                     
                 System.Diagnostics.Debug.WriteLine(" SQL Update Query =  " + cmdText);
 
